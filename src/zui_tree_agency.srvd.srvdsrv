@@ -1,0 +1,5 @@
+@EndUserText.label: 'Agency - Service Definition'
+define service ZUI_TREE_AGENCY {
+  expose Z_TREE_P_AGENCY as Agency;
+  expose I_Currency      as Currency;
+}

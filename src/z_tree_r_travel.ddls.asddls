@@ -1,12 +1,14 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Travel'
 define root view entity Z_TREE_R_TRAVEL
-  as select from /dmo/travel_m as Travel
+  as select from /dmo/agency   as Agency
+    inner join   /dmo/travel_m as Travel on Travel.agency_id = Agency.agency_id
 {
-  key travel_id     as TravelID,
-      agency_id     as AgencyID,
-      description   as Description,
-      @Semantics.amount.currencyCode: 'CurrencyCode'
-      total_price   as TotalPrice,
-      currency_code as CurrencyCode
+  key       Agency.agency_id     as AgencyID,
+  key       Travel.travel_id     as TravelID,
+            Agency.name          as Name,
+            Travel.description   as Description,
+            @Semantics.amount.currencyCode: 'CurrencyCode'
+            Travel.total_price   as TotalPrice,
+            Travel.currency_code as CurrencyCode
 }
